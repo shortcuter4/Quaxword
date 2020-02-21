@@ -22,10 +22,6 @@ public class Node {
         return child;
     }
 
-    public void addChildren(List<Node> children) {
-        children.forEach(each -> each.setParent(this));
-        this.children.addAll(children);
-    }
 
     public List<Node> getChildren() {
         return children;
@@ -41,10 +37,6 @@ public class Node {
 
     private void setParent(Node parent) {
         this.parent = parent;
-    }
-
-    public Node getParent() {
-        return parent;
     }
 
 }

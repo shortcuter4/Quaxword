@@ -1,39 +1,17 @@
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-public class search {
-    public static void main(String[] args){
-        Node root = new Node(4,4);
-        boolean west = true;
-
-        List<int[]> previousStatesWest = new ArrayList<>();
-        List<int[]> previousStatesEast = new ArrayList<>();
-
-        int stateWest[] = {4,4};
-        int stateEast[] = {0,0};
-
-        previousStatesWest.add(stateWest);
-        previousStatesEast.add(stateEast);
-
-        root = createTree(root, west, previousStatesWest, previousStatesEast);
-
-        printTree(root);
-    }
-
-    public static Node createTree(Node n, boolean west, List<int[]> previousStatesWest, List<int[]> previousStatesEast){
+public class Tree {
+    public  Node createTree(Node n, boolean west, List<int[]> previousStatesWest, List<int[]> previousStatesEast){
         if(n == null){
             return null;
         }
-
-        List<int[]> previousStates = new ArrayList<>();
-        previousStates = previousStatesEast;
-
         int sign = -1;
 
-        List<int[]> possibilities = new ArrayList<>();
         int [][] cases = {{2,0},{0,2},{1,1},{1,0},{0,1}};
+
+        List<int[]> previousStates = previousStatesEast;
+        List<int[]> possibilities = new ArrayList<>();
 
         if(west){
             for(int index = 0; index < cases.length; index++){
@@ -78,13 +56,10 @@ public class search {
                 createTree(child,!west,previousStatesWest, previousStatesEast);
             }
         }
-
-
-
         return n;
     }
 
-    public static void printTree(Node root){
+    public void printTree(Node root){
         List<Node> list = root.getChildren();
 
         System.out.println(root.getCannibalCount() + " " + root.getMissionaryCount());
