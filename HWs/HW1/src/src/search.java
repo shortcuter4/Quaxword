@@ -19,10 +19,7 @@ public class search {
 
         root = createTree(root, west, previousStatesWest, previousStatesEast);
 
-        List<Node> list = root.getChildren();
-        for(int j = 0; j< list.size(); j++){
-            System.out.println(list.get(j).getCannibalCount() + " " + list.get(j).getMissionaryCount());
-        }
+        printTree(root);
     }
 
     public static Node createTree(Node n, boolean west, List<int[]> previousStatesWest, List<int[]> previousStatesEast){
@@ -31,7 +28,7 @@ public class search {
         }
 
         List<int[]> previousStates = new ArrayList<>();
-        previousStates = previousStatesWest;
+        previousStates = previousStatesEast;
 
         int sign = -1;
 
@@ -47,7 +44,7 @@ public class search {
         }
 
         if(!west){
-            previousStates = previousStatesEast;
+            previousStates = previousStatesWest;
             sign = 1;
             for(int index = 0; index < cases.length; index++){
                 if(4-n.getCannibalCount() >= cases[index][0] && 4-n.getMissionaryCount() >= cases[index][1]){
@@ -85,5 +82,15 @@ public class search {
 
 
         return n;
+    }
+
+    public static void printTree(Node root){
+        List<Node> list = root.getChildren();
+
+        System.out.println(root.getCannibalCount() + " " + root.getMissionaryCount());
+
+        for(int j = 0; j< list.size(); j++){
+            printTree(list.get(j));
+        }
     }
 }
