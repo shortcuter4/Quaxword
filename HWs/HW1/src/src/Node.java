@@ -27,6 +27,7 @@ public class Node {
     public Node addChild(Node child) {
         child.setParent(this);
         this.children.add(child);
+        child.initialCannibals = this.initialCannibals;
         for(int index = 0; index < this.previousStatesWest.size(); index++){
             child.previousStatesWest.add(this.previousStatesWest.get(index));
         }
@@ -70,7 +71,6 @@ public class Node {
         this.parent = parent;
     }
 
-    public Node getParent() { return parent; }
 
     public List<int[]> getPreviousStatesWest() {
         return previousStatesWest;
@@ -93,17 +93,13 @@ public class Node {
         }
         queue.add(tmp);
         String str = "";
-        String location;
         int size = queue.size();
         for(int i = 0 ; i < size; i++) {
 
             Node head = queue.remove();
             int []otherside = {4-head.cannibalCount , 4-head.missionaryCount};
-            if(head.isWest()) {
-                str =  "W:"+ head.cannibalCount+ "," + head.missionaryCount + " E:" + otherside[0] + "," + otherside[1] + str;
-            } else {
-                str =  "W:"+  otherside[0] + "," + otherside[1] + " E:" + head.cannibalCount+ "," + head.missionaryCount + str ;
-            }
+            str =  "W:"+ head.cannibalCount+ "," + head.missionaryCount + " E:" + otherside[0] + "," + otherside[1] + str;
+
             if(i+1!=size)
                 str = " >> " + str;
         }

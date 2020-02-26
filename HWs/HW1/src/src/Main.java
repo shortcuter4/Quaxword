@@ -5,13 +5,17 @@ import java.util.Queue;
 
 public class Main {
     public static void main(String[] args){
+        final int CANNIBALS = 4; //PART-A = 4 , PART-B = 2
+
         System.out.println("!!GUIDELINE OF THE OUTPUT!!");
         System.out.println("EACH STATE SHOWS THE NUMBER OF CANNIBALS AND MISSIONARIES AFTER EACH MOVEMENT OF BOAT");
         System.out.println("Ex: \"W:3,4 E:1,0\" MEANS THERE ARE 3 CANNIBALS AND 4 MISSIONARIES IN WEST SIDE (OTHER WORDS: 1 CANNIBALS 0 MISSIONARIES IN EAST SIDE)");
         System.out.println("WE WANT TO GET \"W:0,0 E:4,4\" AS A GOAL STATE (THERE ARE NOBODY IS AT WEST SIDE)");
 
+        //BOAT IS AT WEST INITIALLY
         boolean west = true;
-        final int CANNIBALS = 4;
+
+        //CREATE THE ROOT NODE AND ADD IT INTO QUEUE
         Node root = new Node(CANNIBALS,4,west);
         root.setInitialState(root);
 
@@ -19,6 +23,7 @@ public class Main {
         queue.add(root);
 
         Search nonDeterministic = new Search();
+
         if(!nonDeterministic.search(queue)) {
             System.out.println("\n\n!!QUEUE HAS BEEN EMPTIED WITHOUT REACHING THE GOAL STATE!!");
         } else {
