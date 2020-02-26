@@ -1,24 +1,19 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class Main {
     public static void main(String[] args){
-        Node root = new Node(4,4);
-        Tree tree = new Tree();
-
         boolean west = true;
+        Node root = new Node(4,4,west);
+        root.setInitialState(root);
 
-        List<int[]> previousStatesWest = new ArrayList<>();
-        List<int[]> previousStatesEast = new ArrayList<>();
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
 
-        int stateWest[] = {4,4};
-        int stateEast[] = {0,0};
-
-        previousStatesWest.add(stateWest);
-        previousStatesEast.add(stateEast);
-
-        root = tree.createTree(root, west, previousStatesWest, previousStatesEast);
-
-        tree.printTree(root);
+        Search nonDeterministic = new Search();
+        nonDeterministic.search(queue);
+        
     }
 }
