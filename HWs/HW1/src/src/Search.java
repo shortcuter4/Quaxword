@@ -53,18 +53,19 @@ public class Search {
                 }
             }
 
-            for(int index = 0; index < queue.size(); index++) {
+            int size = queue.size();
+            for(int index = 0; index < size; index++) {
                 paths.add((Node)queue.remove());
             }
             children = currentNode.getChildren();
             paths.addAll(children);
             Collections.shuffle(paths);
+            System.out.println("\nCURRENT QUEUE POSITIONS:");
             for(int index = 0; index < paths.size(); index++) {
-                System.out.println(paths.get(index).getCannibalCount() + " " + paths.get(index).getMissionaryCount());
+                paths.get(index).printPath(paths.get(index));
+                System.out.println();
                 queue.add(paths.get(index));
             }
-
-            System.out.println("\n\n");
             search(queue);
         }
 

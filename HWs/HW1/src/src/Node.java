@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 
 public class Node {
@@ -80,6 +82,32 @@ public class Node {
 
     public boolean isWest() {
         return west;
+    }
+
+    public void printPath(Node n){
+        Node tmp = n;
+        Queue<Node> queue = new LinkedList<>();
+        while(tmp.parent != null){
+            queue.add(tmp);
+            tmp = tmp.parent;
+        }
+        queue.add(tmp);
+        String str = "";
+        String location;
+        int size = queue.size();
+        for(int i = 0 ; i < size; i++) {
+            Node head = queue.remove();
+            if(head.isWest()) {
+                location = "West: ";
+            } else {
+                location = "East: ";
+            }
+            str = location + head.cannibalCount+ "," + head.missionaryCount + str;
+            if(i+1!=size)
+                str = " >> " +str;
+        }
+
+        System.out.print(str);
     }
 
 }

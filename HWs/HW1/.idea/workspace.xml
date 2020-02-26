@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b5962dc-f280-46c4-ab10-6829c693d79c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/src/Search.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Code/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Code/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Code/Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Code/Node.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Code/Tree.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Code/Tree.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Code/Tree.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/src/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/src/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/src/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/src/Tree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/Search.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/src/Search.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -84,7 +83,7 @@
       <option name="presentableId" value="Default" />
       <updated>1582351875337</updated>
       <workItem from="1582351884381" duration="1387000" />
-      <workItem from="1582704690720" duration="3810000" />
+      <workItem from="1582704690720" duration="6412000" />
     </task>
     <servers />
   </component>
@@ -109,16 +108,23 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/src/Search.java</url>
-          <line>9</line>
-          <option name="timeStamp" value="20" />
+          <line>58</line>
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/src/Search.java</url>
-          <line>6</line>
-          <properties class="Search" method="search">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="19" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/src/Node.java</url>
+          <line>89</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/src/Node.java</url>
+          <line>91</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/src/Node.java</url>
+          <line>104</line>
+          <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

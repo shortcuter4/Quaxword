@@ -13,7 +13,11 @@ public class Main {
         queue.add(root);
 
         Search nonDeterministic = new Search();
-        nonDeterministic.search(queue);
-        
+        if(nonDeterministic.search(queue)) {
+            System.out.println("\n\nQUEUE HAS BEEN EMPTIED WITHOUT REACHING THE GOAL STATE");
+        } else {
+            System.out.println("SUCCESS");
+        }
+
     }
 }
