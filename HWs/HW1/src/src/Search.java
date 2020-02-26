@@ -70,9 +70,7 @@ public class Search {
                 System.out.println();
                 queue.add(paths.get(index));
             }
-            search(queue);
+            return search(queue);
         }
-
-        return true;
     }
 }
