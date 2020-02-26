@@ -96,15 +96,16 @@ public class Node {
         String location;
         int size = queue.size();
         for(int i = 0 ; i < size; i++) {
+
             Node head = queue.remove();
+            int []otherside = {4-head.cannibalCount , 4-head.missionaryCount};
             if(head.isWest()) {
-                location = "West: ";
+                str =  "W:"+ head.cannibalCount+ "," + head.missionaryCount + " E:" + otherside[0] + "," + otherside[1] + str;
             } else {
-                location = "East: ";
+                str =  "W:"+  otherside[0] + "," + otherside[1] + " E:" + head.cannibalCount+ "," + head.missionaryCount + str ;
             }
-            str = location + head.cannibalCount+ "," + head.missionaryCount + str;
             if(i+1!=size)
-                str = " >> " +str;
+                str = " >> " + str;
         }
 
         System.out.print(str);

@@ -42,6 +42,10 @@ public class Search {
                 int newCannibalCount = currentNode.getCannibalCount() + sign * (possibilities.get(index)[0]);
                 int newMissionaryCount = currentNode.getMissionaryCount() + sign * (possibilities.get(index)[1]);
 
+                if(newCannibalCount == 0 && newMissionaryCount == 0){
+                    return true;
+                }
+
                 for (int j = 0; j < previousStates.size(); j++) {
                     if ((newCannibalCount == previousStates.get(j)[0]) && (newMissionaryCount == previousStates.get(j)[1])) {
                         loop = true;
