@@ -6,11 +6,13 @@ import java.util.Queue;
 
 public class Node {
 
+    //NODE DATA ATTRIBUTES
     private int cannibalCount;
     private int missionaryCount;
     private int initialCannibals;
     private boolean west;
 
+    //CHILDREN LIST AND PREVIOUS STATES LISTS FOR CHECKING THE LOOP
     private List<Node> children = new ArrayList<>();
     private List<int []> previousStatesWest = new ArrayList<>();
     private List<int []> previousStatesEast = new ArrayList<>();

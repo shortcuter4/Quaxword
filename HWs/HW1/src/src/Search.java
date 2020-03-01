@@ -15,6 +15,7 @@ public class Search {
             List<Node> paths = new ArrayList<>();
             List<int[]> previousStates;
 
+            //IF BOAT IS AT WEST SIGN IS 1 MEANING DECREASE THE NUMBER OF PEOPLE AT WEST AFTER THE MOVEMENT OF BOAT
             int sign = -1;
 
             //ALL POSSIBLE CASES
@@ -22,7 +23,7 @@ public class Search {
             List<int[]> possibilities = new ArrayList<>();
 
 
-            //ADD THE CASES INTO POSSIBILITIES BY CHECKING THE LOCATION OF THE BOAT
+            //ADD THE CASES INTO POSSIBILITIES BY CHECKING THE LOCATION OF THE BOAT AND NUMBER OF CANNIBALS AND MISSIONARIES
             if(currentNode.isWest()){
                 previousStates = currentNode.getPreviousStatesEast();
                 for(int index = 0; index < cases.length; index++){
@@ -33,7 +34,7 @@ public class Search {
                 }
             } else {
                 previousStates = currentNode.getPreviousStatesWest();
-                sign = 1;
+                sign = 1; //MAKE SIGN +1 IF BOAT IS AT WEST(INCREASE THE NUMBER OF PEOPLE AT WEST)
                 for(int index = 0; index < cases.length; index++){
                     if(currentNode.getInitialState()-currentNode.getCannibalCount() >= cases[index][0]
                             && 4-currentNode.getMissionaryCount() >= cases[index][1]){
@@ -42,9 +43,9 @@ public class Search {
                 }
             }
 
+            //FOR ALL POSSIBILITIES CREATE THE NEWMISSIONARY AND NEWCANNIBAL COUNTS AND CHECK WHETHER THERE IS A LOOP OR NOT
             for(int index = 0; index < possibilities.size(); index++) {
                 boolean loop = false;
-
                 //SIGN IS -1 IF BOAT AT WEST, +1 IF BOAT AT EAST
                 int newCannibalCount = currentNode.getCannibalCount() + sign * (possibilities.get(index)[0]);
                 int newMissionaryCount = currentNode.getMissionaryCount() + sign * (possibilities.get(index)[1]);
