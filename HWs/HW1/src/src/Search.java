@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Queue;
 
 public class Search {
-    public boolean search(Queue queue){
+    public boolean search(Queue queue, boolean part){
         //IF THE QUEUE IS EMPTY TERMINATE THE ALGORITHM
         if(queue.size() == 0){
             return false;
@@ -62,11 +62,21 @@ public class Search {
                     }
                 }
                 //IF THERE IS NO LOOP AND STATE IS SAFE, ADD THE NODE AS A CHILD
-                if(!loop && ((newCannibalCount <= newMissionaryCount) || newMissionaryCount == 0)
-                        && (newMissionaryCount == 4 || (currentNode.getInitialState()-newCannibalCount <= 4-newMissionaryCount))){
-                    Node child = new Node(newCannibalCount , newMissionaryCount,!currentNode.isWest());
-                    currentNode.addChild(child);
+                //IF PART A THERE IS EQUALITY AS A SAFE STATE
+                if(part) {
+                    if(!loop && ((newCannibalCount <= newMissionaryCount) || newMissionaryCount == 0)
+                            && (newMissionaryCount == 4 || (currentNode.getInitialState()-newCannibalCount <= 4-newMissionaryCount))){
+                        Node child = new Node(newCannibalCount , newMissionaryCount,!currentNode.isWest());
+                        currentNode.addChild(child);
+                    }
+                } else { //IF PART A THERE IS NO EQUALITY AS A SAFE STATE
+                    if(!loop && ((newCannibalCount < newMissionaryCount) || newMissionaryCount == 0)
+                            && (newMissionaryCount == 4 || (currentNode.getInitialState()-newCannibalCount < 4-newMissionaryCount))){
+                        Node child = new Node(newCannibalCount , newMissionaryCount,!currentNode.isWest());
+                        currentNode.addChild(child);
+                    }
                 }
+
             }
 
             //POP EVERY ELEMENT AT THE QUEUE FOR CREATING THE RANDOMNESS
@@ -89,7 +99,7 @@ public class Search {
                 queue.add(paths.get(index));
             }
             //RECURSIVE CALL
-            return search(queue);
+            return search(queue, part);
         }
     }
 }

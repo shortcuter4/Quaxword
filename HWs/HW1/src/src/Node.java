@@ -97,7 +97,7 @@ public class Node {
         for(int i = 0 ; i < size; i++) {
 
             Node head = queue.remove();
-            int []otherside = {4-head.cannibalCount , 4-head.missionaryCount};
+            int []otherside = {n.initialCannibals-head.cannibalCount , 4-head.missionaryCount};
             str =  "W:"+ head.cannibalCount+ "," + head.missionaryCount + " E:" + otherside[0] + "," + otherside[1] + str;
 
             if(i+1!=size)
