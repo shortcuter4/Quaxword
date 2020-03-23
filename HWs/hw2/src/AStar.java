@@ -6,7 +6,7 @@ public class AStar {
     public static int findH1(int [] numbers) {
         int count = 0;
         for(int i = 0 ; i< numbers.length; i++) {
-            if(numbers[i] != i+1) {
+            if(numbers[i] != 0 && numbers[i] != i+1) {
                 count++;
             }
         }

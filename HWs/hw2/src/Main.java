@@ -5,6 +5,7 @@ public class Main {
         int[][] randoms = new int[30][9];
         Functions f = new Functions();
         f.randomGenerator(randoms);
+        DrawGraph.createAndShowGui(randoms);
         int position = 4;
         for (int x = 0; x < 2; x++) {
             ArrayList<int []> set = new ArrayList<>();
@@ -58,7 +59,7 @@ public class Main {
 
 
                 if (f.checkGoal(possibilities[position])) {
-                    System.out.println("\n\nYOU SON OF A BITCH YOU MADE IT!!" + "  " + state );
+                    System.out.println("\nYOU MADE IT!! STATES COUNT: " + state + "\n" );
                     check = true;
                 } else {
                     state++;

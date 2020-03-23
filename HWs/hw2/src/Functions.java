@@ -135,6 +135,7 @@ public class Functions {
         return "";
     }
 
+
     public static boolean avoidLoop(ArrayList<int []> set, int [] candidate) {
         for(int i = 0; i < set.size(); i++) {
             int count = 0;
