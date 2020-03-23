@@ -11,7 +11,7 @@ public class Main {
             ArrayList<int []> set = new ArrayList<>();
             int[] numbers = randoms[x];
             set.add(numbers);
-            System.out.println("INITIAL STATE");
+            System.out.println("INITIAL STATE ");
             f.print(numbers);
             Queue<int[]> queue = new LinkedList<>();
             queue.add(numbers);
@@ -68,5 +68,4 @@ public class Main {
             }
         }
     }
-
 }
