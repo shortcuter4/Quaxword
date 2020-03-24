@@ -117,10 +117,6 @@ public class DrawGraph extends JPanel {
         }
     }
 
-    //    @Override
-//    public Dimension getPreferredSize() {
-//        return new Dimension(width, heigth);
-//    }
     private double getMinScore() {
         double minScore = Double.MAX_VALUE;
         for (Integer score : scores) {
@@ -137,20 +133,9 @@ public class DrawGraph extends JPanel {
         return maxScore;
     }
 
-    public void setScores(List<Integer> scores) {
-        this.scores = scores;
-        invalidate();
-        this.repaint();
-    }
-
-    public List<Integer> getScores() {
-        return scores;
-    }
-
     static void createAndShowGui(int [][]randoms) {
         AStar aStar = new AStar();
         List<Integer> scores = new ArrayList<Integer>();
-        Random random = new Random();
         int maxDataPoints = 30;
 
         for (int i = 0; i < maxDataPoints ; i++) {

@@ -2,10 +2,11 @@ import java.util.ArrayList;
 import java.util.Set;
 
 public class Functions {
+    //GENERATE 30 RANDOM PUZZLE
     public static void randomGenerator(int [][]randoms) {
         for (int i = 0; i< 30; i++) {
             int[] numbers = {1,2,3,4,5,6,7,8,0};
-            for(int j = 0; j< 10; j++) {
+            for(int j = 0; j< 15; j++) {
                 int x = ((int)(Math.random()*10)) % 4;
                 if(x == 0) {
                     moveRight(numbers);

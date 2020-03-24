@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="adf4dd94-7972-493a-8d94-4a3d71b76c1c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/DrawGraph.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/hw2/Functions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/hw2/Functions.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/hw2/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/hw2/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AStar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AStar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DrawGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DrawGraph.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Functions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Functions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
@@ -31,6 +33,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -89,6 +92,8 @@
       <workItem from="1584798756628" duration="4156000" />
       <workItem from="1584803102102" duration="622000" />
       <workItem from="1584881586405" duration="25000" />
+      <workItem from="1584987229983" duration="922000" />
+      <workItem from="1585035016566" duration="1714000" />
     </task>
     <servers />
   </component>
