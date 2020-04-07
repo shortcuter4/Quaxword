@@ -31,7 +31,10 @@ public class GameBot {
 		ArrayList<TTTBoardState> children = new ArrayList<TTTBoardState>();	//CHANGED
 		state.getChildBoards(children);	//CHANGED
 		if (children.size() == 0 || state.checkGameOver() != GameState.ONGOING)
+		{
+			//System.out.println("Test1");
 			return new EvaluatedBoard(state, state.getBoardScore());
+		}
 
 		int bestStateVal;
 		TTTBoardState bestNode = null;

@@ -41,13 +41,13 @@ public class TTTWindow {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		turn = false;
 		main_panel = new JPanel();
-		main_panel.setLayout(new GridLayout(3, 3));
+		main_panel.setLayout(new GridLayout(4, 4));
 		main_panel.setVisible(true);
 		//BorderFactory.createLineBorder(Color.BLACK, 1);
 		main_panel.setBackground(Color.WHITE);
-		panels = new ImagePanel[9];
+		panels = new ImagePanel[16];
 		
-		for (int i = 0; i < 9; i++) {
+		for (int i = 0; i < 16; i++) {
 			panels[i] = new ImagePanel(i);
 			main_panel.add(panels[i]);
 			panels[i].addMouseListener(new MyMouseListener());

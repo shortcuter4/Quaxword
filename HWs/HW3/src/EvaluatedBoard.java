@@ -21,7 +21,9 @@ public class EvaluatedBoard {
 	}
 	
 	public int makeMove(TTTBoardState game) {
-		for (int i=0; i<16; i++) {
+		for (int i=0; i< 16; i++) {
+
+			//board.getBoard().toString();
 			if(board.getBoard().get(i) != game.getBoard().get(i)) {
 				game.putPiece(i, board.getBoard().get(i));
 				return i;
