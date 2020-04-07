@@ -8,6 +8,7 @@ import java.util.ArrayList;
  * In this class, we keep the states of the Tic Tac Toe Board.
  *
  */
+
 enum Piece {
 	X, O, EMPTY;
 }
@@ -18,13 +19,16 @@ enum GameState {
 
 public class TTTBoardState {
 	private ArrayList<Piece> board;
+	public int turn;
 
 	//constructor
 	public TTTBoardState() {
 		board = new ArrayList<Piece>();
+		turn =  1;
 		for (int i = 0; i < 16; i++)
 			board.add(Piece.EMPTY);
 	}
+	//public Piece getBoardWithNum(int i){ return board.get(i);}
 	//constructor
 	public TTTBoardState(ArrayList<Piece> board) {
 		this.board = board;
@@ -34,6 +38,9 @@ public class TTTBoardState {
 		return this.board;
 	}
 
+	public int getTurn() {return this.turn;}
+
+	//if place is empty, put piece into i
 	public TTTBoardState copyAndPutPiece(int i, Piece p) {
 		ArrayList<Piece> boardCpy = new ArrayList<Piece>(board);
 
@@ -51,6 +58,7 @@ public class TTTBoardState {
 		if (board.get(i) == Piece.EMPTY) {
 			board.set(i, p);
 		}
+		turn++;
 	}
 	/**
 	 * We get the numbers of the Os and Xs in a line,
@@ -176,7 +184,7 @@ public class TTTBoardState {
 		ArrayList<Integer> emptyPlaces = new ArrayList<Integer>();
 		int totalX = getLineProperties(0)[0] + getLineProperties(1)[0] + getLineProperties(2)[0] + getLineProperties(3)[0];
 		int totalO = getLineProperties(0)[1] + getLineProperties(1)[1] + getLineProperties(2)[1] + getLineProperties(3)[1];
-		
+
 		for (int i = 0; i < 16; i++) {
 			if (board.get(i) == Piece.EMPTY) {
 				// if totalX == totalO, its turn of X. else, O.
@@ -186,6 +194,23 @@ public class TTTBoardState {
 					children.add(copyAndPutPiece(i, Piece.O));
 				emptyPlaces.add(i);
 			}
+		}
+		return emptyPlaces;
+	}
+	public ArrayList<Integer> getChildBoardsFull(ArrayList<TTTBoardState> children) {  //CHANGED
+		ArrayList<Integer> emptyPlaces = new ArrayList<Integer>();
+		int totalX = getLineProperties(0)[0] + getLineProperties(1)[0] + getLineProperties(2)[0] + getLineProperties(3)[0];
+		int totalO = getLineProperties(0)[1] + getLineProperties(1)[1] + getLineProperties(2)[1] + getLineProperties(3)[1];
+
+		for (int i = 0; i < 16; i++) {
+
+				// if totalX == totalO, its turn of X. else, O.
+				if (totalX == totalO)
+					children.add(copyAndPutPiece(i, Piece.X));
+				else
+					children.add(copyAndPutPiece(i, Piece.O));
+				emptyPlaces.add(i);
+
 		}
 		return emptyPlaces;
 	}
@@ -226,9 +251,9 @@ public class TTTBoardState {
 		int[] childEval = {16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16};
 
 		for (int i=0;i<emptyPlaces.size();i++) {
-			int evaluation = GameBot.getBestMovePossible(children.get(i), XPlaysNext, Integer.MIN_VALUE, Integer.MAX_VALUE).getValue();
+			int evaluation = GameBot.getBestMovePossible(children.get(i), XPlaysNext, Integer.MIN_VALUE, Integer.MAX_VALUE,false).getValue();
 			childEval[emptyPlaces.get(i)] = evaluation==Integer.MAX_VALUE?1:evaluation==Integer.MIN_VALUE?-1:0;
-			System.out.println("Loading wait...");
+			//System.out.println("Loading wait...");
 		}
 		/*
 		for(int i=0;i<9;i++)

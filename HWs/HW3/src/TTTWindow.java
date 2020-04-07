@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
+import java.util.concurrent.TimeUnit;
 /**
  * @author Ege Aydin
  * @author Onur Kirmizi
@@ -50,7 +51,7 @@ public class TTTWindow {
 		for (int i = 0; i < 16; i++) {
 			panels[i] = new ImagePanel(i);
 			main_panel.add(panels[i]);
-			panels[i].addMouseListener(new MyMouseListener());
+			panels[i].addMouseListener(new MyMouseListener(i));
 		}
 
 		game = new TTTBoardState();
@@ -79,21 +80,42 @@ public class TTTWindow {
 
 	public class MyMouseListener implements MouseListener {
 
+		public int place;
+		public MyMouseListener(int i)
+		{
+			place = i;
+		}
+
 		public void mouseClicked(MouseEvent e) {
 			if (stopGame == false) {
 				panels[lastMove].reSetImage();
-				if (turn == false) {
-					lastMove = bot.makeNextMove(Player.X);
-					panels[lastMove].setXImage();
-					SwingUtilities.updateComponentTreeUI(frame);
-					turn = true;
-					frame.setTitle("O is playing...");
-					if (game.checkGameOver() == GameState.X_WON) { // we check whether X wins
-						frame.setTitle("X won");
-						stopGame = true;
-					}
-				} else {
+
+				lastMove = bot.playerMakeNextMove(Player.X, place);
+
+				System.out.println("Player X moved to " + lastMove);
+
+				panels[lastMove].setXImage();
+				SwingUtilities.updateComponentTreeUI(frame);
+				turn = true;
+				frame.setTitle("O is playing...");
+				if (game.checkGameOver() == GameState.X_WON) { // we check whether X wins
+					frame.setTitle("X won");
+					stopGame = true;
+				}
+				game.getChildEval();  //CHANGED
+				text_area.setText(game.getChildEvalAsSquare());
+				text_area.setEditable(false);
+				text_area.setBackground(frame.getBackground());
+				try {
+					TimeUnit.SECONDS.sleep(1);
+				} catch (InterruptedException ex) {
+					ex.printStackTrace();
+				}
+				if (stopGame == false)
+				{
+					panels[lastMove].reSetImage();
 					lastMove = bot.makeNextMove(Player.O);
+					System.out.println("Player O make move to : " + lastMove);
 					panels[lastMove].setOImage();
 					SwingUtilities.updateComponentTreeUI(frame);
 					turn = false;
@@ -102,15 +124,15 @@ public class TTTWindow {
 						frame.setTitle("O won");
 						stopGame = true;
 					}
+					if (game.checkGameOver() == GameState.TIE) {
+						frame.setTitle("The game is a tie");
+						stopGame = true;
+					}
+					game.getChildEval();  //CHANGED
+					text_area.setText(game.getChildEvalAsSquare());
+					text_area.setEditable(false);
+					text_area.setBackground(frame.getBackground());
 				}
-				if (game.checkGameOver() == GameState.TIE) {
-					frame.setTitle("The game is a tie");
-					stopGame = true;
-				}
-				game.getChildEval();  //CHANGED
-				text_area.setText(game.getChildEvalAsSquare());
-				text_area.setEditable(false);
-				text_area.setBackground(frame.getBackground());
 			}
 		}
 

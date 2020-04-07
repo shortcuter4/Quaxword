@@ -20,6 +20,7 @@ public class ImagePanel extends JPanel {
 	BufferedImage image;
 	Player symbol;
 	Border border;
+	public int position;
 
 	public ImagePanel(int index) {
 		try {
@@ -37,6 +38,7 @@ public class ImagePanel extends JPanel {
 		this.setSize(150, 150);
 		border = BorderFactory.createLineBorder(Color.BLACK, 1);
 		this.setBorder(border);
+		position =  index;
 	}
 
 	protected void paintComponent(Graphics g) {
