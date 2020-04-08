@@ -12,10 +12,8 @@ enum Player {
  * In this class, we make the A.I. Part of the program.
  *
  */
-
 public class GameBot {
 	private TTTBoardState game;
-	public static int turn  = 1;
 
 	public GameBot(TTTBoardState game) {
 		this.game = game;
@@ -63,7 +61,7 @@ public class GameBot {
 			return new EvaluatedBoard(state, state.getBoardScore());
 		}
 
-		if(GameBot.turn <= 3 || isPlayer)
+		if(state.getTurn() <= 5 || isPlayer)
 		{
 			if (maximizing) {
 				bestStateVal = Integer.MIN_VALUE;
