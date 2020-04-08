@@ -51,7 +51,7 @@ public class EvaluatedBoard {
 		for (int a=0; a< 4; a++) {
 			for(int b = 0; b< 4; b++)
 			{
-				System.out.print("\t" +  board.getBoard().get(b + a)); //board.getBoard().get(a);
+				System.out.print("\t" +  board.getBoard().get(b + a * 4)); //board.getBoard().get(a);
 			}
 			System.out.println();
 		}
