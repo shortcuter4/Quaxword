@@ -14,7 +14,7 @@ public class Main {
         TTTBoardState blank = new TTTBoardState();
 
         System.out.println("Click on GUI to continue");
-        TTTWindow mainWindow = new TTTWindow();
-        mainWindow.startGame();
+        TTTWindow mainWindow = new TTTWindow(0,0);
+        mainWindow.startGame(mainWindow);
     }
 }

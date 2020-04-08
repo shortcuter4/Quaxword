@@ -1,6 +1,4 @@
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -9,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
+import java.util.Timer;
 import java.util.concurrent.TimeUnit;
 /**
  * @author Ege Aydin
@@ -33,13 +32,21 @@ public class TTTWindow {
 	private int lastMove;
 	private BorderLayout borderLayout;
 
-	public TTTWindow() {
+	private TTTWindow newGameWindow;
+	int p1score, p2score;
+
+	public TTTWindow(int p1newscore, int p2newscore) {
 		frame = new JFrame();
 		borderLayout = new BorderLayout();
 		frame.setLayout(borderLayout);
 		frame.setTitle("Click on table to continue.");
 		frame.setVisible(true);
+		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		frame.setLocation(-150 + dim.width/2-frame.getSize().width/2, dim.height/3-frame.getSize().height/2);
+
 		turn = false;
 		main_panel = new JPanel();
 		main_panel.setLayout(new GridLayout(4, 4));
@@ -71,11 +78,15 @@ public class TTTWindow {
 		frame.add(text_panel,BorderLayout.SOUTH);
 		frame.setSize(450,550);
 
+		p1score = p1newscore;
+		p2score = p2newscore;
+
 		
 	}
 	
-	public void startGame() {
+	public void startGame(TTTWindow newTTwindow) {
 		stopGame = false;
+		newGameWindow = newTTwindow;
 	}
 
 	public class MyMouseListener implements MouseListener {
@@ -101,6 +112,26 @@ public class TTTWindow {
 				if (game.checkGameOver() == GameState.X_WON) { // we check whether X wins
 					frame.setTitle("X won");
 					stopGame = true;
+
+					//update score for player 1, delay 2 seconds for player read score title, remove current frame and open new windows for new game, transfer scores
+					//game finishes if any player has 3 scores
+					p1score++;
+
+					try {
+						TimeUnit.SECONDS.sleep(2);
+					} catch (InterruptedException ex) {
+						ex.printStackTrace();
+					}
+
+					if(!(p1score==3 || p2score==3)) {
+						frame.setVisible(false);
+						newGameWindow = new TTTWindow(p1score, p2score);
+					}
+					else{
+						frame.setTitle("p1: " + p1score + " - " + p2score + " :p2");
+					}
+					System.out.println("p1: " + p1score + " - " + p2score + " :p2");
+
 				}
 				game.getChildEval();  //CHANGED
 				text_area.setText(game.getChildEvalAsSquare());
@@ -123,10 +154,42 @@ public class TTTWindow {
 					if (game.checkGameOver() == GameState.O_WON) { // we check whether X wins
 						frame.setTitle("O won");
 						stopGame = true;
+
+						//update score for player 2, delay 2 seconds for player read score title, remove current frame and open new windows for new game, transfer scores
+						//game finishes if any player has 3 scores
+						p2score++;
+
+						try {
+							TimeUnit.SECONDS.sleep(2);
+						} catch (InterruptedException ex) {
+							ex.printStackTrace();
+						}
+
+						if(!(p1score==3 || p2score==3)) {
+							frame.setVisible(false);
+							newGameWindow = new TTTWindow(p1score, p2score);
+						}
+						else{
+							frame.setTitle("p1: " + p1score + " - " + p2score + " :p2");
+						}
+						System.out.println("p1: " + p1score + " - " + p2score + " :p2");
+
+
 					}
 					if (game.checkGameOver() == GameState.TIE) {
 						frame.setTitle("The game is a tie");
 						stopGame = true;
+
+						//dont change scores, delay 2 seconds for player read score title, remove current frame and open new windows for new game, transfer scores
+						//game finishes if any player has 3 scores
+						try {
+							TimeUnit.SECONDS.sleep(2);
+						} catch (InterruptedException ex) {
+							ex.printStackTrace();
+						}
+
+						frame.setVisible(false);
+						newGameWindow = new TTTWindow(p1score, p2score);
 					}
 					game.getChildEval();  //CHANGED
 					text_area.setText(game.getChildEvalAsSquare());
