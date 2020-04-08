@@ -19,12 +19,11 @@ enum GameState {
 
 public class TTTBoardState {
 	private ArrayList<Piece> board;
-	public int turn;
 
 	//constructor
 	public TTTBoardState() {
 		board = new ArrayList<Piece>();
-		turn =  1;
+		//turn =  1;
 		for (int i = 0; i < 16; i++)
 			board.add(Piece.EMPTY);
 	}
@@ -38,7 +37,7 @@ public class TTTBoardState {
 		return this.board;
 	}
 
-	public int getTurn() {return this.turn;}
+	//public int getTurn() {return this.turn;}
 
 	//if place is empty, put piece into i
 	public TTTBoardState copyAndPutPiece(int i, Piece p) {
@@ -58,7 +57,7 @@ public class TTTBoardState {
 		if (board.get(i) == Piece.EMPTY) {
 			board.set(i, p);
 		}
-		turn++;
+		GameBot.turn++;
 	}
 	/**
 	 * We get the numbers of the Os and Xs in a line,

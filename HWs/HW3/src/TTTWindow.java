@@ -15,9 +15,9 @@ import java.util.concurrent.TimeUnit;
  * @author Denizhan Soydas
  * @author Ali Ozer
  * @author Sina Sahan
- * 
+ *
  * In this class, we open a JPanel to paint the grids of Tic Tac Toe on the GUI.
- * 
+ *
  */
 public class TTTWindow {
 	private JFrame frame;
@@ -54,7 +54,7 @@ public class TTTWindow {
 		//BorderFactory.createLineBorder(Color.BLACK, 1);
 		main_panel.setBackground(Color.WHITE);
 		panels = new ImagePanel[16];
-		
+
 		for (int i = 0; i < 16; i++) {
 			panels[i] = new ImagePanel(i);
 			main_panel.add(panels[i]);
@@ -64,7 +64,7 @@ public class TTTWindow {
 		game = new TTTBoardState();
 		bot = new GameBot(game);
 		game.getChildEval();	//CHANGED
-		
+
 		main_panel.setSize(450, 450);
 		text_panel = new JPanel();
 		text_area = new JTextArea();
@@ -81,9 +81,9 @@ public class TTTWindow {
 		p1score = p1newscore;
 		p2score = p2newscore;
 
-		
+
 	}
-	
+
 	public void startGame(TTTWindow newTTwindow) {
 		stopGame = false;
 		newGameWindow = newTTwindow;
