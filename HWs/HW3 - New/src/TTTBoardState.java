@@ -1,13 +1,4 @@
 import java.util.ArrayList;
-/**
- * @author Ege Aydin
- * @author Onur Kirmizi
- * @author Denizhan Soydas
- * @author Ali Ozer
- * @author Sina Sahan
- * In this class, we keep the states of the Tic Tac Toe Board.
- *
- */
 
 enum Piece {
 	X, O, EMPTY;
@@ -19,17 +10,14 @@ enum GameState {
 
 public class TTTBoardState {
 	private ArrayList<Piece> board;
-	//public int turn;
 
 	//constructor
 	public TTTBoardState() {
 		board = new ArrayList<Piece>();
-		//turn =  1;
 		for (int i = 0; i < 16; i++)
 			board.add(Piece.EMPTY);
 	}
-	//public Piece getBoardWithNum(int i){ return board.get(i);}
-	//constructor
+
 	public TTTBoardState(ArrayList<Piece> board) {
 		this.board = board;
 	}
@@ -38,7 +26,7 @@ public class TTTBoardState {
 		return this.board;
 	}
 
-	//public int getTurn() {return turn;}
+
 
 	//if place is empty, put piece into i
 	public TTTBoardState copyAndPutPiece(int i, Piece p) {
@@ -49,23 +37,15 @@ public class TTTBoardState {
 		}
 		return new TTTBoardState(boardCpy);
 	}
-	/**
-	 * 
-	 * @param i the place to put Piece.
-	 * @param p the Piece that is desired to put.
-	 */
+
 	public void putPiece(int i, Piece p) {
 		if (board.get(i) == Piece.EMPTY) {
 			board.set(i, p);
 		}
 		GameBot.turn++;
 	}
-	/**
-	 * We get the numbers of the Os and Xs in a line,
-	 * we'll calculate the state value of the game.
-	 * @param line the line to calculate the values.
-	 * @return the number of the Xs and Os on that line.
-	 */
+
+
 	public int[] getLineProperties(int line) // column0:0, column1:1, column2:2, row0:3, row1:4, row2:5, diag\:6, diag/:7
 	{
 		int[] result = { 0, 0 }; // number of X, number of O
@@ -101,10 +81,7 @@ public class TTTBoardState {
 		}
 		return result;
 	}
-	/**
-	 * this method checks whether the game is finished or not.
-	 * @return simply returns a gamestate 
-	 */
+
 	public GameState checkGameOver() {
 
 		if (board.get(0) == board.get(5) && board.get(5) == board.get(10) && board.get(10) == board.get(15))
@@ -121,54 +98,7 @@ public class TTTBoardState {
 			if (board.get(i*4) != Piece.EMPTY && board.get(i) == board.get(i + 4) && board.get(i + 4) == board.get(i + 8) && board.get(i + 8) == board.get(i + 12))
 				return board.get(i) == Piece.O ? GameState.O_WON
 						: board.get(i) == Piece.X ? GameState.X_WON : GameState.ONGOING;
-		/*
-		if (board.get(0) == board.get(5) && board.get(5) == board.get(10))
-			return board.get(0) == Piece.O ? GameState.O_WON
-					: board.get(0) == Piece.X ? GameState.X_WON : GameState.ONGOING;
-		if (board.get(2) == board.get(5) && board.get(5) == board.get(8))
-			return board.get(2) == Piece.O ? GameState.O_WON
-					: board.get(2) == Piece.X ? GameState.X_WON : GameState.ONGOING;
 
-		if (board.get(1) == board.get(6) && board.get(6) == board.get(11))
-			return board.get(1) == Piece.O ? GameState.O_WON
-					: board.get(1) == Piece.X ? GameState.X_WON : GameState.ONGOING;
-		if (board.get(3) == board.get(6) && board.get(6) == board.get(9))
-			return board.get(3) == Piece.O ? GameState.O_WON
-					: board.get(3) == Piece.X ? GameState.X_WON : GameState.ONGOING;
-
-		if (board.get(4) == board.get(9) && board.get(9) == board.get(14))
-			return board.get(4) == Piece.O ? GameState.O_WON
-					: board.get(4) == Piece.X ? GameState.X_WON : GameState.ONGOING;
-		if (board.get(6) == board.get(9) && board.get(9) == board.get(12))
-			return board.get(6) == Piece.O ? GameState.O_WON
-					: board.get(6) == Piece.X ? GameState.X_WON : GameState.ONGOING;
-
-		if (board.get(5) == board.get(10) && board.get(10) == board.get(15))
-			return board.get(5) == Piece.O ? GameState.O_WON
-					: board.get(5) == Piece.X ? GameState.X_WON : GameState.ONGOING;
-		if (board.get(7) == board.get(10) && board.get(10) == board.get(13))
-			return board.get(7) == Piece.O ? GameState.O_WON
-					: board.get(7) == Piece.X ? GameState.X_WON : GameState.ONGOING;
-
-		for (int i = 0; i < 4; i++)
-			if (board.get(i * 4) == board.get(i * 4 + 1) && board.get(i * 4 + 1) == board.get(i * 4 + 2))
-				return board.get(i * 4) == Piece.O ? GameState.O_WON
-						: board.get(i * 4) == Piece.X ? GameState.X_WON : GameState.ONGOING;
-		for (int i = 0; i < 4; i++)
-			if (board.get(i * 4 + 1) == board.get(i * 4 + 2) && board.get(i * 4 + 2) == board.get(i * 4 + 3))
-				return board.get(i * 4 + 1) == Piece.O ? GameState.O_WON
-						: board.get(i * 4 + 1) == Piece.X ? GameState.X_WON : GameState.ONGOING;
-
-		for (int i = 0; i < 4; i++)
-			if (board.get(i) == board.get(i + 4) && board.get(i + 4) == board.get(i + 8))
-				return board.get(i) == Piece.O ? GameState.O_WON
-						: board.get(i) == Piece.X ? GameState.X_WON : GameState.ONGOING;
-		for (int i = 4; i < 8; i++)
-			if (board.get(i) == board.get(i + 4) && board.get(i + 4) == board.get(i + 8))
-				return board.get(i) == Piece.O ? GameState.O_WON
-						: board.get(i) == Piece.X ? GameState.X_WON : GameState.ONGOING;
-
-		 */
 
 		boolean tie = true;
 		for (int i = 0; i < 16; i++)
@@ -176,10 +106,7 @@ public class TTTBoardState {
 
 		return tie ? GameState.TIE : GameState.ONGOING;
 	}
-	/**
-	 * We return the child boards in this class.
-	 * @return the ArrayList of all Child Boards.
-	 */
+
 	public ArrayList<Integer> getChildBoards(ArrayList<TTTBoardState> children) {  //CHANGED
 		ArrayList<Integer> emptyPlaces = new ArrayList<Integer>();
 		int totalX = getLineProperties(0)[0] + getLineProperties(1)[0] + getLineProperties(2)[0] + getLineProperties(3)[0];
@@ -255,12 +182,7 @@ public class TTTBoardState {
 			childEval[emptyPlaces.get(i)] = evaluation==Integer.MAX_VALUE?1:evaluation==Integer.MIN_VALUE?-1:0;
 			//System.out.println("Loading wait...");
 		}
-		/*
-		for(int i=0;i<9;i++)
-			System.out.print(childEval[i]+" ,");
-		System.out.println(" Test");
 
-		 */
 		return childEval;
 	}
 

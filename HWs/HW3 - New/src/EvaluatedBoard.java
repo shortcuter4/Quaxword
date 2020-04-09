@@ -1,12 +1,4 @@
-/**
- * @author Ege Aydin
- * @author Onur Kirmizi
- * @author Denizhan Soydas
- * @author Ali Ozer
- * @author Sina Sahan
- * We make soem movements on the board in this class.
- * 
- */
+
 public class EvaluatedBoard {
 	private TTTBoardState board;
 	private int value;
@@ -35,9 +27,6 @@ public class EvaluatedBoard {
 		}
 
 		for (int i=0; i< 16; i++) {
-
-			//System.out.println(this.value);
-			//board.getBoard().toString();
 			if(board.getBoard().get(i) != game.getBoard().get(i)) {
 				game.putPiece(i, board.getBoard().get(i));
 				return i;
@@ -46,8 +35,6 @@ public class EvaluatedBoard {
 		return -1;
 	}
 	public int playerMakeMove(TTTBoardState game, int i) {
-		//board.getBoard().toString();
-		//System.out.println(this.value);
 		for (int a=0; a< 4; a++) {
 			for(int b = 0; b< 4; b++)
 			{

@@ -3,15 +3,7 @@ import java.util.ArrayList;
 enum Player {
 	X, O;
 }
-/**
- * @author Ege Aydin
- * @author Onur Kirmizi
- * @author Denizhan Soydas
- * @author Ali Ozer
- * @author Sina Sahan
- * In this class, we make the A.I. Part of the program.
- *
- */
+
 public class GameBot {
 	private TTTBoardState game;
 	public static int turn = 1;
@@ -27,21 +19,15 @@ public class GameBot {
 	}
 	public int playerMakeNextMove(Player currentPlayer, int place) {
 		// we use alpha beta prunning to determine the best move possible.
-		//EvaluatedBoard bestMove = getBestMovePossible(game, currentPlayer == Player.X, Integer.MIN_VALUE, Integer.MAX_VALUE);
 
 		ArrayList<TTTBoardState> children = new ArrayList<TTTBoardState>();	//CHANGED
 		game.getChildBoardsFull(children);	//CHANGED
 
 		TTTBoardState bestNode;
-		//System.out.println("playerMakeNextMove");
 
 		bestNode = children.get(place);
 
 		EvaluatedBoard bestMove =new EvaluatedBoard(bestNode, game.getBoardScore());
-
-		//bestMove.setValue(place);
-
-		//System.out.println("bestMove.getValue() "+ bestMove.getValue());
 
 		return bestMove.playerMakeMove(game,place);
 	}

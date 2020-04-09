@@ -10,16 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 import java.util.concurrent.TimeUnit;
-/**
- * @author Ege Aydin
- * @author Onur Kirmizi
- * @author Denizhan Soydas
- * @author Ali Ozer
- * @author Sina Sahan
- * 
- * In this class, we open a JPanel to paint the grids of Tic Tac Toe on the GUI.
- * 
- */
+
 public class TTTWindow {
 	private JFrame frame;
 	private JPanel main_panel;

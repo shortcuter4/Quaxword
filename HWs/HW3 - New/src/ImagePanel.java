@@ -7,15 +7,7 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
-/**
- * @author Ege Aydin
- * @author Onur Kirmizi
- * @author Denizhan Soydas
- * @author Ali Ozer
- * @author Sina Sahan
- * In this class, we draw the images acc. to the type of the object, (O or X)
- * 
- */
+
 public class ImagePanel extends JPanel {
 	BufferedImage image;
 	Player symbol;
