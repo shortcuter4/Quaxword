@@ -47,7 +47,7 @@ public class GameBot {
 			return new EvaluatedBoard(state, state.getBoardScore());
 		}
 
-		if(turn <= 4 || isPlayer)
+		if(turn <= 3 || isPlayer)
 		{
 			if (maximizing) {
 				bestStateVal = Integer.MIN_VALUE;
