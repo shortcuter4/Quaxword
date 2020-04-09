@@ -18,6 +18,6 @@ IF YOU DECREASE THAT NUMBER THE COMPUTER WILL PLAY MORE OPTIMALLY BUT WAIT LONGE
 0 GIVES THE BEST RESULT BUT LONGEST WAITING TIME
 
 ***AS A CONCLUSION***
-The tictactoe 4x4 is a futile game because we our bot plays optimally and prevents us to win the game when we play optimally too.
-We are not able to beat the bot but if we play bad, the bot will always beat us sinc eit play optimally all the time.
+The tictactoe 4x4 is a futile game because our bot plays optimally and prevents us to win the game when we play optimally too.
+We are not able to beat the bot but if we play bad, the bot will always beat us since it plays optimally all the time.
 Therefore there is no such case when we win the game. Please check the report.pdf for the further explanation.
