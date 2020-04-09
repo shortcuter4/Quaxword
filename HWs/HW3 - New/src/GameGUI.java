@@ -11,20 +11,20 @@ import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 import java.util.concurrent.TimeUnit;
 
-public class TTTWindow {
+public class GameGUI {
 	private JFrame frame;
 	private JPanel main_panel;
 	private ImagePanel panels[];
 	private JPanel text_panel;
 	private JTextArea text_area;
-	private TTTBoardState game;
+	private CurrentBoard game;
 	private GameBot bot;
 	private boolean stopGame;
 	private boolean turn;
 	private int lastMove;
 	private BorderLayout borderLayout;
 
-	public TTTWindow() {
+	public GameGUI() {
 		frame = new JFrame();
 		borderLayout = new BorderLayout();
 		frame.setLayout(borderLayout);
@@ -45,7 +45,7 @@ public class TTTWindow {
 			panels[i].addMouseListener(new MyMouseListener(i));
 		}
 
-		game = new TTTBoardState();
+		game = new CurrentBoard();
 		bot = new GameBot(game);
 		game.getChildEval();	//CHANGED
 		

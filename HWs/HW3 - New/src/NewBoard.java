@@ -1,9 +1,9 @@
 
-public class EvaluatedBoard {
-	private TTTBoardState board;
+public class NewBoard {
+	private CurrentBoard board;
 	private int value;
 	
-	public EvaluatedBoard(TTTBoardState board, int value) {
+	public NewBoard(CurrentBoard board, int value) {
 		this.board = board;
 		this.value = value;
 	}
@@ -16,7 +16,7 @@ public class EvaluatedBoard {
 		this.value = newValue;
 	}
 	
-	public int makeMove(TTTBoardState game) {
+	public int makeMove(CurrentBoard game) {
 
 		for (int a=0; a< 4; a++) {
 			for(int b = 0; b< 4; b++)
@@ -34,7 +34,7 @@ public class EvaluatedBoard {
 		}
 		return -1;
 	}
-	public int playerMakeMove(TTTBoardState game, int i) {
+	public int playerMakeMove(CurrentBoard game, int i) {
 		for (int a=0; a< 4; a++) {
 			for(int b = 0; b< 4; b++)
 			{

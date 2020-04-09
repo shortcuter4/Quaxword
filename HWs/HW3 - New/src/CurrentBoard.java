@@ -8,17 +8,17 @@ enum GameState {
 	X_WON, O_WON, TIE, ONGOING;
 }
 
-public class TTTBoardState {
+public class CurrentBoard {
 	private ArrayList<Piece> board;
 
 	//constructor
-	public TTTBoardState() {
+	public CurrentBoard() {
 		board = new ArrayList<Piece>();
 		for (int i = 0; i < 16; i++)
 			board.add(Piece.EMPTY);
 	}
 
-	public TTTBoardState(ArrayList<Piece> board) {
+	public CurrentBoard(ArrayList<Piece> board) {
 		this.board = board;
 	}
 	//getter for Pieces.
@@ -29,13 +29,13 @@ public class TTTBoardState {
 
 
 	//if place is empty, put piece into i
-	public TTTBoardState copyAndPutPiece(int i, Piece p) {
+	public CurrentBoard copyAndPutPiece(int i, Piece p) {
 		ArrayList<Piece> boardCpy = new ArrayList<Piece>(board);
 
 		if (boardCpy.get(i) == Piece.EMPTY) {
 			boardCpy.set(i, p);
 		}
-		return new TTTBoardState(boardCpy);
+		return new CurrentBoard(boardCpy);
 	}
 
 	public void putPiece(int i, Piece p) {
@@ -107,7 +107,7 @@ public class TTTBoardState {
 		return tie ? GameState.TIE : GameState.ONGOING;
 	}
 
-	public ArrayList<Integer> getChildBoards(ArrayList<TTTBoardState> children) {  //CHANGED
+	public ArrayList<Integer> getChildBoards(ArrayList<CurrentBoard> children) {  //CHANGED
 		ArrayList<Integer> emptyPlaces = new ArrayList<Integer>();
 		int totalX = getLineProperties(0)[0] + getLineProperties(1)[0] + getLineProperties(2)[0] + getLineProperties(3)[0];
 		int totalO = getLineProperties(0)[1] + getLineProperties(1)[1] + getLineProperties(2)[1] + getLineProperties(3)[1];
@@ -124,7 +124,7 @@ public class TTTBoardState {
 		}
 		return emptyPlaces;
 	}
-	public ArrayList<Integer> getChildBoardsFull(ArrayList<TTTBoardState> children) {  //CHANGED
+	public ArrayList<Integer> getChildBoardsFull(ArrayList<CurrentBoard> children) {  //CHANGED
 		ArrayList<Integer> emptyPlaces = new ArrayList<Integer>();
 		int totalX = getLineProperties(0)[0] + getLineProperties(1)[0] + getLineProperties(2)[0] + getLineProperties(3)[0];
 		int totalO = getLineProperties(0)[1] + getLineProperties(1)[1] + getLineProperties(2)[1] + getLineProperties(3)[1];
@@ -173,7 +173,7 @@ public class TTTBoardState {
 		int totalO = getLineProperties(0)[1] + getLineProperties(1)[1] + getLineProperties(2)[1] + getLineProperties(3)[1];
 		boolean XPlaysNext = totalX!=totalO;
 		
-		ArrayList<TTTBoardState> children = new ArrayList<TTTBoardState>();
+		ArrayList<CurrentBoard> children = new ArrayList<CurrentBoard>();
 		ArrayList<Integer> emptyPlaces = this.getChildBoards(children);
 		int[] childEval = {16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16};
 

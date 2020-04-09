@@ -1,9 +1,9 @@
 public class Main {
     public static void main(String[] args) {
-        TTTBoardState blank = new TTTBoardState();
+        CurrentBoard blank = new CurrentBoard();
 
         System.out.println("Click on GUI to continue");
-        TTTWindow mainWindow = new TTTWindow();
+        GameGUI mainWindow = new GameGUI();
         mainWindow.startGame();
     }
 }

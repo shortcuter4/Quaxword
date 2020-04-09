@@ -5,46 +5,46 @@ enum Player {
 }
 
 public class GameBot {
-	private TTTBoardState game;
+	private CurrentBoard game;
 	public static int turn = 1;
-	public GameBot(TTTBoardState game) {
+	public GameBot(CurrentBoard game) {
 		this.game = game;
 	}
 
 	public int makeNextMove(Player currentPlayer) {
 		// we use alpha beta prunning to determine the best move possible.
-		EvaluatedBoard bestMove = getBestMovePossible(game, currentPlayer == Player.X, Integer.MIN_VALUE,
+		NewBoard bestMove = getBestMovePossible(game, currentPlayer == Player.X, Integer.MIN_VALUE,
 				Integer.MAX_VALUE,currentPlayer == Player.X);
 		return bestMove.makeMove(game);
 	}
 	public int playerMakeNextMove(Player currentPlayer, int place) {
 		// we use alpha beta prunning to determine the best move possible.
 
-		ArrayList<TTTBoardState> children = new ArrayList<TTTBoardState>();	//CHANGED
+		ArrayList<CurrentBoard> children = new ArrayList<CurrentBoard>();	//CHANGED
 		game.getChildBoardsFull(children);	//CHANGED
 
-		TTTBoardState bestNode;
+		CurrentBoard bestNode;
 
 		bestNode = children.get(place);
 
-		EvaluatedBoard bestMove =new EvaluatedBoard(bestNode, game.getBoardScore());
+		NewBoard bestMove =new NewBoard(bestNode, game.getBoardScore());
 
 		return bestMove.playerMakeMove(game,place);
 	}
 	//we use alpha beta prunning to determine the best move possible.
-	public static EvaluatedBoard getBestMovePossible(TTTBoardState state, boolean maximizing, int alpha, int beta, boolean isPlayer) {
+	public static NewBoard getBestMovePossible(CurrentBoard state, boolean maximizing, int alpha, int beta, boolean isPlayer) {
 
-		ArrayList<TTTBoardState> children = new ArrayList<TTTBoardState>();	//CHANGED
+		ArrayList<CurrentBoard> children = new ArrayList<CurrentBoard>();	//CHANGED
 		state.getChildBoards(children);	//CHANGED
 
 		int bestStateVal  = 0;
-		TTTBoardState bestNode = null;
+		CurrentBoard bestNode = null;
 
 		//System.out.println(state.getTurn());
 
 		if (children.size() == 0 || state.checkGameOver() != GameState.ONGOING)
 		{
-			return new EvaluatedBoard(state, state.getBoardScore());
+			return new NewBoard(state, state.getBoardScore());
 		}
 
 		if(turn <= 3 || isPlayer)
@@ -52,7 +52,7 @@ public class GameBot {
 			if (maximizing) {
 				bestStateVal = Integer.MIN_VALUE;
 				for (int i = 0; i < children.size(); i++) {
-					int stateVal = (new EvaluatedBoard(state, state.getBoardScore())).getValue();
+					int stateVal = (new NewBoard(state, state.getBoardScore())).getValue();
 					if (stateVal > bestStateVal) {
 						bestNode = children.get(i);
 						bestStateVal = stateVal;
@@ -64,7 +64,7 @@ public class GameBot {
 			} else {
 				bestStateVal = Integer.MAX_VALUE;
 				for (int i = 0; i < children.size(); i++) {
-					int stateVal = (new EvaluatedBoard(state, state.getBoardScore())).getValue();
+					int stateVal = (new NewBoard(state, state.getBoardScore())).getValue();
 					if (stateVal < bestStateVal) {
 						bestNode = children.get(i);
 						bestStateVal = stateVal;
@@ -104,6 +104,6 @@ public class GameBot {
 			}
 
 		}
-		return new EvaluatedBoard(bestNode, bestStateVal);
+		return new NewBoard(bestNode, bestStateVal);
 	}
 }
